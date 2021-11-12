@@ -1,0 +1,81 @@
+Reverse the given string word wise. That is, the last word in given string should come at 1st place, last second word at 2nd place and so on. 
+Individual words should remain as it is.
+
+Input format :
+String in a single line
+
+Output format :
+Word wise reversed string in a single line
+
+ALGO FOR THIS
+The whole logic can be broken down into three steps.
+Step 1. Find the length the input string or character array
+
+Step 2. Reversing the whole character array, using two pointers.
+You can use two pointers: start and end. Swap the characters at start and end. 
+Move the pointers towards each other by incrementing the value of start and decrementing the value of end.
+Repeat the first step till the value of start is less than the value of end.
+
+Step 3. Reversing each word, using two pointers:   
+You can take three pointers: ‘i’ to traverse through the string, start and end: to reverse each word. Initialize variable i with 0.
+Before starting the traversal, initialize ‘start’ with ‘i’
+You need to reverse when character at ith index is a space. This means you have reached at the end of a word. Update ‘end’ as i-1. 
+Reverse the word by swapping characters. Repeat the step till the value of start is less and equal to the value of end.
+Now, increment the value of i. 
+Repeat steps 2, 3 and 4 till ‘i’ reaches at null character.
+When i reaches null character, the last word is still left to be reversed. 
+So, the last reversal can be done after coming out of the loop. Update ‘end’ as i-1.
+Reverse the word by swapping characters. Repeat the step till the value of start is less than the value of end.
+
+code-
+#include<cstring>
+void reverseStringWordWise(char input[]) 
+{
+     //finding the length of the string 
+   int i=0;
+    char temp;
+    //swapping of whole string
+    int start=0, end=strlen(input)-1;
+    while(start <= end)
+    {
+        temp=input[start];
+        input[start]=input[end];
+        input[end]=temp;
+        start++;
+        end--;
+    }
+    //swapping each word now
+    //DRY RUN KAR TABHI SAMJH AYEGA...
+    i=0; //traversing with i and holding upon with two pointers start and end
+    start=0; //assigned a pointer on first index
+    while(input[i]!='\0')
+    {
+        if(input[i]==' ')
+        {
+            end=i-1; //put a end pointer to end of the letter. 
+            while(start<=end)
+            {
+                temp=input[start];
+                input[start]=input[end];
+                input[end]=temp;
+                start++;
+                end--;
+            }
+            start=i+1; //shift start pointer to starting letter of another word
+        }
+        if(input[i+1]=='\0') //when all the words are readed and a null is encountered rather then a space then we use 
+            //this loop for swapping in it
+        {
+            end=i;
+            while(start<=end)
+            {
+                temp=input[start];
+                input[start]=input[end];
+                input[end]=temp;
+                start++;
+                end--;
+            }
+        }
+        i++;
+    }
+}
