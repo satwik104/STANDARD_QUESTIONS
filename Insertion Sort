@@ -1,0 +1,15 @@
+void insertionSort(int *input, int size)
+{
+    int i,j,temp;
+    for(i=1;i<size;i++)
+    {
+        j=i-1;
+        temp=input[i];
+        while(j>=0 && temp<input[j])
+        {
+                input[j+1]=input[j];
+                j--;
+        }
+           input[j+1]=temp;
+    }
+}
