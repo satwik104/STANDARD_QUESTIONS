@@ -1,0 +1,19 @@
+int binarySearch(int *input, int n, int val)
+{
+    int l=0,u=n-1,mid,flag=0;
+    while(l<=u)
+    {
+         mid=(u+l)/2;
+        if(input[mid]==val)
+        {
+            flag=1;
+            return mid;
+        }
+        else if(input[mid]>val)
+            u=mid-1;
+        else
+            l=mid+1;
+    }
+    if(flag==0)
+        return -1;
+}
