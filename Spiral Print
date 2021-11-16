@@ -1,0 +1,69 @@
+For a given two-dimensional integer array/list of size (N x M), print it in a spiral form. That is, you need to print in the order followed for every iteration:
+a. First row(left to right)
+b. Last column(top to bottom)
+c. Last row(right to left)
+d. First column(bottom to top)
+ 
+ Sample Input 1:
+1
+4 4 
+1 2 3 4 
+5 6 7 8 
+9 10 11 12 
+13 14 15 16
+Sample Output 1:
+1 2 3 4 8 12 16 15 14 13 9 5 6 7 11 10 
+
+code-
+void spiralPrint(int **input, int nRows, int nCols)
+{
+     // Do check this video for logic and code 
+    //https://youtu.be/1ZGJzvkcLsA
+    
+    //x%y = x-(x/y)*y [modulus].
+    
+    /*
+    	we assume -
+        0 Represents Left to Right direction
+        1 Represents Top to Down direction
+        2 Represents Right to Left direction
+        3 Represents Down to Top direction.
+    */
+    /*
+    k	top-   1  2  3  4
+               5  6  7  8
+               9  10 11 12
+    m	down-  13 14 15 16
+        
+              left       right
+               l           n
+              
+       here top ,down, left, right are the pointers which help to restrict the movement
+    */
+    int top=0, down = nRows, left= 0, right = nCols, direction = 0, i;
+    
+    while(top<down && left<right)
+    {
+        
+            for(i=left; i<right; i++)
+                cout<<input[top][i]<<" ";
+            top++;
+    
+            for(i=top; i<down; i++)
+                cout<<input[i][right-1]<<" ";
+            right--;
+
+     if(top < down)
+        {
+            for(i=right-1; i>=left; i--)
+                cout<<input[down-1][i]<<" ";
+            down--;
+        }
+    if(left < right)
+        {
+         	for(i=down-1; i>=top; i--)
+                cout<<input[i][left]<<" ";
+            left++;   
+        }
+    }
+}
