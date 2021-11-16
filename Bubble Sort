@@ -1,0 +1,20 @@
+void bubbleSort(int *input, int size)
+{
+    int round,i,temp,flag=1;
+    for(round=1;round<size;round++)
+    {
+        flag=0;
+        //for comparisons in each round
+        for(i=0;i<size-round;i++)
+        {
+            if(input[i]>input[i+1]){
+                flag=1;
+            	temp=input[i]; 
+                input[i]=input[i+1];
+                input[i+1]=temp;
+            } 
+        }
+        if(flag==0)
+            return;
+    }
+}
