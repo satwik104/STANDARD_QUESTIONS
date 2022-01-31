@@ -1,0 +1,64 @@
+For a given two-dimensional integer array/list of size (N x M), you need to find out which row or column has the largest sum(sum of all the elements in a row/column) 
+amongst all the rows and columns.
+Sample Input 1 :
+1
+2 2 
+1 1 
+1 1
+Sample Output 1 :
+row 0 2
+Sample Input 2 :
+2
+3 3
+3 6 9 
+1 4 7 
+2 8 9
+4 2
+1 2
+90 100
+3 40
+-10 200
+Sample Output 2 :
+column 2 25
+column 1 342
+//*******************************CODE***********************************************//
+void findLargest(int **input, int nRows, int mCols)
+{
+    int i, j, max_col_sum=0, max_row_sum=0, sum=0, row_index, col_index;
+    
+    if(nRows==0 && mCols==0)//specially for null cases that is test case 1
+        cout<<"row "<<0<<' '<<-2147483648;
+    else
+    {
+       //to get the largest coloumn sum
+    for(j=0; j<mCols; j++)
+    {
+        sum=0;
+		for(i=0; i<nRows; i++)
+            sum=sum+input[i][j];
+        if(sum>max_col_sum)
+        {
+              max_col_sum=sum;
+            col_index=j;
+        }
+      
+    }
+    //to get the largest row sum
+    for(i=0; i<nRows; i++)
+    {
+        sum=0;
+        for(j=0; j<mCols; j++)
+            sum=sum+input[i][j];
+        if(sum>max_row_sum)
+        {
+            max_row_sum=sum;
+            row_index=i;
+        } 
+    }
+    if(max_row_sum>=max_col_sum)
+       cout<<"row "<<row_index<<' '<<max_row_sum;
+    else
+       cout<<"column "<<col_index<<' '<<max_col_sum;  
+    }
+   
+}
