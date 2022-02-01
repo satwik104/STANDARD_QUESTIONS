@@ -1,0 +1,48 @@
+Aadil has been provided with a sentence in the form of a string as a function parameter. The task is to implement a function so as to print the sentence such that each word in the sentence is reversed.
+Example:
+Input Sentence: "Hello, I am Aadil!"
+The expected output will print, ",olleH I ma !lidaA".
+
+Sample Input 1:
+Welcome to Coding Ninjas
+Sample Output 1:
+emocleW ot gnidoC sajniN
+Sample Input 2:
+Always indent your code
+Sample Output 2:
+syawlA tnedni ruoy edoc
+**************************************code************************
+void reverseEachWord(char input[]) {
+    
+    //same logic as in REVERSE WORD WISE PROBLEM
+    int i=0,start=0,end,temp;
+    while(input[i]!='\0')
+    {
+        if(input[i]==' ')
+        {
+            end=i-1;
+            while(start<=end)
+            {
+                temp=input[start];
+                input[start]=input[end];
+                input[end]=temp;
+                start++;
+                end--;
+            }
+            start=i+1;
+        }
+        if(input[i+1]=='\0')
+        {
+            end=i;
+            while(start<=end)
+            {
+                temp=input[start];
+                input[start]=input[end];
+                input[end]=temp;
+                start++;
+                end--;
+			}
+        }
+        i++;
+    }
+}
