@@ -1,0 +1,27 @@
+For a given a string(str), find and return the highest occurring character.
+Sample Input 1:
+abdefgbabfba
+Sample Output 1:
+b
+Sample Input 2:
+xy
+Sample Output 2:
+x
+***********************code********************
+char highestOccurringChar(char input[]) {
+    int a[256]={0};
+    int count =0;
+    int n=strlen(input);
+    for(int i=0;i<n;i++){
+        a[input[i]]++;
+    }
+    char ans;
+    for(int i=0;i<n;i++){
+        
+        if(a[input[i]]>count)
+        {//comaparing and selecting the highest frequency character
+            count = a[input[i]];
+            ans = input[i];
+        }
+    }return ans;
+}
