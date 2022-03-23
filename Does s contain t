@@ -1,0 +1,54 @@
+Given two string s and t, write a function to check if s contains all characters of t (in the same order as they are in string t).
+Return true or false.
+Do it recursively.
+E.g. : s = “abchjsgsuohhdhyrikkknddg” contains all characters of t=”coding” in the same order. So function will return true.
+Input Format :
+Line 1 : String s
+Line 2 : String t
+Output Format :
+true or false
+Sample Input 1 :
+abchjsgsuohhdhyrikkknddg
+coding
+Sample Output 1 :
+true
+Sample Input 2 :
+abcde
+aeb
+Sample Output 2 :
+false
+*************************code*******************
+ #include <string.h> 
+bool checksequenece(char large[] , char*small) {
+ if(small[0]=='\0'&&large[0]!='\0')//here it doesent mater what is first of large string....if null then also ok if not then also true
+                return true;
+    
+ else if(small[0]!='\0'&&large[0]=='\0')
+        return false;
+
+ else if(large[0]=='\0'&&small[0]=='\0')
+            return true;
+    /***************************************NON RECURSIVE APPROACH**************/
+int i=0,j,count=0;
+        for(j=0;large[j]!='\0';j++)
+        {
+            if(large[j]==small[i])
+            {
+                i++;
+                count++;
+            }
+        }
+    return (strlen(small) == count);
+    /*************************************RECURSIVE APPROACH************************/
+      /*  int i=0;
+        for(;large[i]!='\0';i++)
+        {
+            if(large[i]==small[0])
+            {
+                break;
+            }
+        }
+        if(large[i]=='\0')
+            return false;
+    return checksequenece(large+i+1,small+1);*/
+}
