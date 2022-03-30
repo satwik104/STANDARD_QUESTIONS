@@ -1,0 +1,48 @@
+//helping function
+Node* mergeTwoSortedLists(Node *a,Node *b)
+{
+  Node *result=NULL;
+  if(a==NULL)
+  {
+    return b;
+  }else if(b==NULL)
+  {
+    return a;
+  }
+  if(a->data <= b->data)
+  {
+    result=a;
+    result->next=mergeTwoSortedLists(a->next,b);
+  }else
+  {
+    result=b;
+    result->next=mergeTwoSortedLists(a,b->next);
+  }
+  return result;
+}
+//main sorting code
+Node *mergeSort(Node *head)
+{
+    if(head==NULL || head->next==NULL)//this is a base case for our recursive calls
+        return head;
+    
+	Node* slow=head;
+    Node* fast=head->next;
+    
+    while(fast!=NULL&&fast->next!=NULL)
+    {
+        slow=slow->next;
+        fast=fast->next->next;
+    }
+    //now we have mid in slow so we devide the list now
+    Node* firstHalfTail = slow;
+    Node* secondHalfHead = slow->next;
+    firstHalfTail->next=NULL;//for making it a complete seprate list whose head is save in head
+    //now we will make recursive calls on both lists to devide more in these lists
+    Node* head1=mergeSort(head);//because it was initially in head
+    Node* head2=mergeSort(secondHalfHead);
+    //now we will cal function to merge the sorted lists
+    Node *mergedListHead = mergeTwoSortedLists(head1,head2);
+    return mergedListHead;
+    
+}
