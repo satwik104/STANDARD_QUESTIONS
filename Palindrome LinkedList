@@ -1,0 +1,83 @@
+/****************************************************************
+ 
+    Following is the class structure of the Node class:
+
+        class Node
+        {
+        public:
+	        int data;
+	        Node *next;
+	        Node(int data)
+	        {
+		        this->data = data;
+		        this->next = NULL;
+	        }
+        };
+
+*****************************************************************/
+  Node* reverse(Node* head)
+    {
+        if (head== NULL)
+            return NULL;
+        if (head->next == NULL) {
+            return head;
+        }
+    Node *x=reverse(head->next);
+    
+    head->next->next=head;
+    head->next=NULL;
+    return x;
+}
+bool isPalindrome(Node *head)
+{
+    //Write your code here
+    
+    
+    if(head==NULL || head->next==NULL)
+        return true;
+    
+   Node *slow=head;//mid point in slow
+    Node *fast=head->next;
+  
+    while(fast!=NULL && fast->next!=NULL ){
+        slow=slow->next;
+        fast=fast->next->next;
+    }
+ 
+    Node *head2=slow->next;
+    slow->next=NULL;
+    
+    Node *headx=reverse(head2);
+    
+    while(head!=NULL && headx!=NULL){
+        if(head->data!=headx->data)
+            return false;
+        
+        head=head->next;
+        headx=headx->next;
+    }
+    
+   return true; 
+    
+}
+// bool isPalindrome(Node *head)
+// {
+// //     if(head==NULL || head->next==NULL)
+// //         return true;
+// //     Node *temp=head;
+// //     int count = 1;
+// //     while(temp!=NULL)
+// //     {
+// //         temp=temp->next;
+// //         count++;
+// //     }
+// //     int mid = count/2;
+// //     count = 0;
+// //     while(count!=mid)
+// //     {
+// //         temp=temp->next;
+// //         count++;
+// //     }
+    
+    
+// }
