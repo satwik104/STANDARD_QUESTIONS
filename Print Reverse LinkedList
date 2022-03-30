@@ -1,0 +1,9 @@
+//recursive approach
+void printReverse(Node *head)
+{
+    Node *temp=head;
+    if(temp==NULL)
+        return;
+    printReverse(temp->next);
+    cout<<temp->data<<" ";
+}
