@@ -1,0 +1,32 @@
+/****************************************************************
+ 
+    Following is the class structure of the Node class:
+
+        class Node
+        {
+        public:
+	        int data;
+	        Node *next;
+	        Node(int data)
+	        {
+		        this->data = data;
+		        this->next = NULL;
+	        }
+        };
+
+*****************************************************************/
+
+Node *midPoint(Node *head)
+{
+    if(head==NULL || head->next==NULL)
+        return head;
+    Node *slow=head;
+    Node *fast=head->next;
+    while(fast!=NULL && fast->next!=NULL)//first condition is working for odd case
+                                         //second condition is working for even case
+    {
+        slow=slow->next;
+        fast=fast->next->next;//after first interation it will be 2 steps forward of s
+    }
+    return slow;
+}
